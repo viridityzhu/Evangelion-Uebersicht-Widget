@@ -5,7 +5,7 @@ config = {
     CPUAlertLevel: 90
     Opacity: 0.5
     Voice: false
-    colourIdle: "rgba(10,10,10,1)"
+    colourIdle: "rgba(50,50,50,1)" # 10,10,10 black
     colourWarn: "rgba(256,0,0,1)"
     colourDNDS: "rgba(256,96,0,1)"
     colourWhit: "rgba(256,256,256,1)"
@@ -14,29 +14,32 @@ config = {
     ShowUpdates: true
     remoteBranch: "dev"
 }
-## If you do not know how to write HTML/CSS, it is best for you to learn it first before
-## attempting to customise the UI. Or you can contact me.
+
+
 ## Any advise or new idea is welcome. Do not hesitate to contact me, my email is: jetic@me.com
 # Refreshing Frequency is set to once every 3000ms
-refreshFrequency: 3000
-# Information on cells
-## Cells consists of three parts. A main body(nav), a top and a bottom(s and b). Cells are rotated
-## 90 degrees to the current position. For special cells (Battery cell, iTunes cell), the toppings
-## and bottoms are slightly different, for example s1, s2, b1, b2, these are modified to cover
-## the gaps between the originally seperated cells. Almost all the elements in the cells are
-## positioned manually, this is to ensure that the UI looks exactly the same on different
-## environments. Übersicht is using the safari engine to render the widgets, therefore the UI under
-## different versions of Safari could be different, if so please contact me and I'll fix this. There
-## are also classes like a0, a1, a2, a3, a4, these act as collective cell controlls allowing me to
-## change the output of all related cells when necessary. ai cells are initially hidden; a1 and a2
-## are used to adjust the lines so that the cells won't crash into each other; a3 is the battery
-## cell; a4 is the console output cell; ax hasn't been used. Contents in the cells can use the
-## classes content of bigger text or contents for smaller text, although most of the time it might
-## be better to adjust the font-size manually. It is obvious that some of the cells are hidden(ai),
-## these can be easily modified to display new contents as you like. I will personally add more to
-## this widget as well. Please look out for my updates and if you've done something amazing with
-## your copy of this widget and want me to add, please contact me.
-##
+refreshFrequency: 30000
+
+# Information on cells Cells consists of three parts. A main body(nav), a top and a bottom(s and b). Cells are rotated 90 degrees to the current position. 
+# For special cells (Battery cell, iTunes cell), the toppings and bottoms are slightly different, for example s1, s2, b1, b2, these are modified to cover the gaps between the originally seperated cells. 
+
+# Almost all the elements in the cells are positioned manually, this is to ensure that the UI looks exactly the same on different environments. 
+
+# Übersicht is using the safari engine to render the widgets, therefore the UI under different versions of Safari could be different. 
+
+# classes like a0, a1, a2, battCells, a4 act as collective cell controlls allowing me to change the output of all related cells when necessary. 
+# ai cells are initially hidden; 
+# a1 and a2 are used to adjust the lines so that the cells won't crash into each other; 
+# battCells is the battery cell; 
+# a4 is the console output cell; 
+# ax hasn't been used. 
+
+# Contents in the cells can use the classes content of bigger text or contents for smaller text, although most of the time it might be better to adjust the font-size manually. 
+
+# It is obvious that some of the cells are hidden(ai), these can be easily modified to display new contents as you like. 
+
+
+
 # You can change the size through adjusting the font-size under style. Default is 1px
 style: """
     font-size: #{config.Magnification}px
@@ -182,7 +185,7 @@ style: """
     .a1
         margin-right:140em
     .ai
-        visibility: hidden
+        /* visibility: hidden */
     .a4
         background:rgba(0,0,0,0)
     .nav:hover a0 s
@@ -197,11 +200,11 @@ style: """
         background-color:rgba(10,10,10,0)
     .ax
         height:200em
-    .a1:hover, .a2:hover, .a3:hover
+    .a1:hover, .a2:hover, .battCells:hover
         background-color:#{config.colourIdleHover}
-    .a1:hover s, .a2:hover s, .a3:hover s
+    .a1:hover s, .a2:hover s, .battCells:hover s
         border-bottom-color:#{config.colourIdleHover}
-    .a1:hover b, .a2:hover b, .a3:hover b
+    .a1:hover b, .a2:hover b, .battCells:hover b
         border-top-color:#{config.colourIdleHover}
     .output
         padding: 5em 10em
@@ -565,7 +568,7 @@ render: -> """
             <div class="id">13</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
-        <div class="nav a3" target="_blank" href="#" id="14"><s></s><b1></b1></div>
+        <div class="nav battCells" target="_blank" href="#" id="14"><s></s><b1></b1></div>
         <div class="nav ai" target="_blank" href="#" id="15"><s></s><b></b>
             <div class="contentS" style="margin-left:-25em;margin-top:-4em">
                 <span style="font-size:15em">verbleibend</span>
@@ -581,7 +584,7 @@ render: -> """
             <div class="content"  style="margin-left:30em;margin-top:-55em">
                 <span class="MEMU" style="font-size:23em">Fehler</span>
             </div></div>
-        <div class="nav a3" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
+        <div class="nav battCells" target="_blank" href="#" id="17" style="z-index:9999"><s2></s2><b></b>
             <div class="Rotate" style="margin-top:-70em;margin-left:-60em;text-align:left"><span class="Bat"></span></div>
             <div class="Rotate" style="margin-top:-65em;margin-left:-35em;text-align:left"><span class="BatStatus"></span></div></div><p></p>
         <div class="nav ai" target="_blank" href="#" id="18"></div>
@@ -590,7 +593,7 @@ render: -> """
             <div class="id">19</div>
             <o></o><o style="transform:rotate(-60deg)"></o><o style="transform:rotate(-120deg)"></o>
             <div class="Wcontent" style="text-decoration:underline overline"><u></u><d></d>WARNUNG</div></div>
-        <div class="nav a3" target="_blank" href="#" id="BatCell"><s></s><b2></b2>
+        <div class="nav battCells" target="_blank" href="#" id="BatCell"><s></s><b2></b2>
             <div class="Rotate" style="margin-top:-5em;margin-left:-35em;width:200em;text-align:center;font-family:Futura;font-style:normal">
                 <span class="BatPer" style="font-size:20em">Fehler</span>
             </div></div>
@@ -679,81 +682,47 @@ render: -> """
 command:    ""
 
 afterRender: (domEl) ->
-#   Get System Language
-    language = navigator.language;
+
 #   Define constants
     window.segments = ["子時", "丑時", "寅時", "卯時", "辰時", "巳時", "午時", "未時", "申時", "酉時", "戌時", "亥時"]
-    if (language.indexOf("de") > -1)
-        window.voice = "yannick"
-        window.voiceBatteryLow = "warnung, batterie fast leer"
-        window.voiceBatteryCharging = "batterie laden"
-        window.voiceCPUzuHohe = "warnung, cpu auslastung zu hohe"
-        window.voiceMEMzuHohe = "warnung, speicherdruck zu hohe"
-        window.voiceNichtStoerenEin = "nicht stören modus eingeschaltet"
-        window.voiceNichtStoerenAus = "nicht stören modus ausgeschaltet"
-        window.Batterievalues  = [
-            'NUR AC'
-            ''
-            'AC Power'
-            ''
-        ]
-        window.daylist = [
-            'Sonntag'
-            'Montag'
-            'Dienstag'
-            'Mittwoch'
-            'Donnerstag'
-            'Freitag'
-            'Samstag'
-        ]
-        window.TrashEmpty = "Leer"
-        window.ErrorMessage = "Fehler"
-        window.WarningMessage = "WARNUNG"
-        window.BatteryStatus = [
-            'laden'
-            'geladen'
-            'entladen'
-            'beenden'
-        ]
-        window.BatteryType = "innenbatterie"
-    else
-        window.voice = "daniel"
-        window.voiceBatteryLow = "warning, battery level critical"
-        window.voiceBatteryCharging = "battery charging"
-        window.voiceCPUzuHohe = "warning, cpu overloaded"
-        window.voiceMEMzuHohe = "warning, memory pressure too high"
-        window.voiceNichtStoerenEin = "no disturb mode is on"
-        window.voiceNichtStoerenAus = "no disturb mode is off"
-        window.Batterievalues  = [
-            'AC Only'
-            ''
-            'AC Power'
-            ''
-        ]
-        window.daylist = [
-            'Sunday'
-            'Monday'
-            'Tuesday'
-            'Wednesday'
-            'Thursday'
-            'Friday'
-            'Saturday'
-        ]
-        window.TrashEmpty = "Empty"
-        window.ErrorMessage = "Error"
-        window.WarningMessage = "WARNING"
-        window.BatteryStatus = [
-            'charging'
-            'charged'
-            'discharging'
-            'finishing'
-        ]
-        window.BatteryType = "internalbattery"
-        $(domEl).find("#MemCell     span").text("Memory")
-        $(domEl).find("#IPCell      span").text("PublicIP")
-        $(domEl).find("#TrashCell   span").text("Trash")
-        $(domEl).find(".Wcontent        ").html("<u></u><d></d>#{window.WarningMessage}")
-        $(domEl).find("#21     .contentS").html("<u></u><d></d>#{window.WarningMessage}")
+# I don't know Germany so deleted because I'll reconstruct the code thoroughly
+    window.voice = "daniel"
+    window.voiceBatteryLow = "warning, battery level critical"
+    window.voiceBatteryCharging = "battery charging"
+    window.voiceCPUzuHohe = "warning, cpu overloaded"
+    window.voiceMEMzuHohe = "warning, memory pressure too high"
+    window.voiceNichtStoerenEin = "no disturb mode is on"
+    window.voiceNichtStoerenAus = "no disturb mode is off"
+    window.Batterievalues  = [
+        'AC Only'
+        ''
+        'AC Power'
+        ''
+    ]
+    window.daylist = [
+        'Sunday'
+        'Monday'
+        'Tuesday'
+        'Wednesday'
+        'Thursday'
+        'Friday'
+        'Saturday'
+    ]
+    window.TrashEmpty = "Empty"
+    window.ErrorMessage = "Error"
+    window.WarningMessage = "WARNING"
+    window.BatteryStatus = [
+        'charging'
+        'charged'
+        'discharging'
+        'finishing'
+    ]
+    window.BatteryType = "internalbattery"
+    $(domEl).find("#MemCell     span").text("Memory")
+    $(domEl).find("#IPCell      span").text("PublicIP")
+    $(domEl).find("#TrashCell   span").text("Trash")
+    $(domEl).find(".Wcontent        ").html("<u></u><d></d>#{window.WarningMessage}")
+    $(domEl).find("#21     .contentS").html("<u></u><d></d>#{window.WarningMessage}")
 #   Voice
     window.voiceCommand = "say -v " + window.voice + " "
 #   Initialise warnings
@@ -810,18 +779,6 @@ afterRender: (domEl) ->
         if stderr
             console.error stderr
 
-    url = "https://raw.githubusercontent.com/jeticg/Evangelion-Uebersicht-Widget/#{config.remoteBranch}/widget.json"
-    $.ajax url,
-        dataType: 'json'
-        success: (data, textStatus, jqXHR) ->
-            console.log "Version(Online): #{data.version}"
-            console.log "Version(Local): #{Version}"
-            if Version != data.version
-                console.log "Yoo, you need an update"
-                if config.ShowUpdates == true
-                    $(domEl).find("#27").css("visibility", "visible")
-            else
-                console.log "You have the newest version. OK, you're cool"
 
 update: (output, domEl) ->
 # functions
@@ -1091,7 +1048,7 @@ update: (output, domEl) ->
         if (Bwarning == 0)
             if config.Voice
                 @run voiceCommand + voiceBatteryLow
-            colourChange(".a3", config.colourWarn)
+            colourChange(".battCells", config.colourWarn)
             colourChange("#15", config.colourWarnHover)
             $(domEl).find("#15").css("visibility","visible")
             Bwarning += 1
@@ -1099,7 +1056,7 @@ update: (output, domEl) ->
         if (Bwarning == 1)
             if config.Voice
                 @run voiceCommand + voiceBatteryCharging
-            colourChange(".a3", config.colourIdle)
+            colourChange(".battCells", config.colourIdle)
             colourChange("#15", "rgba(128,0,0,0)")
             $(domEl).find("#15").css("visibility","hidden")
             Bwarning -= 1
@@ -1140,16 +1097,16 @@ update: (output, domEl) ->
     warning_switch(Bwarning+Cwarning+Swarning, Mwarning)
 
 #   hover effects, dealing with hovering
-    $('.a3').hover (->
+    $('.battCells').hover (->
             if Bwarning == 1
-                colourChange(".a3", config.colourWarnHover)
+                colourChange(".battCells", config.colourWarnHover)
             else
-                colourChange(".a3", config.colourIdleHover)
+                colourChange(".battCells", config.colourIdleHover)
     ), (->
             if Bwarning == 1
-                colourChange(".a3", config.colourWarn)
+                colourChange(".battCells", config.colourWarn)
             else
-                colourChange(".a3", config.colourIdle)
+                colourChange(".battCells", config.colourIdle)
     )
 
     $('#31').hover (
